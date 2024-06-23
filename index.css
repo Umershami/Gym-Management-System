@@ -1,0 +1,272 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #f0f2f5;
+}
+
+.maincontainer {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background-color: #495057;
+}
+
+.settings {
+    margin-top: auto;
+}
+
+.right {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+}
+
+.upperpart {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+}
+
+.wlcm {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.whole {
+    display: flex;
+    gap: 20px;
+}
+
+.summary-attendance-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.summary, .attendance {
+    width: 50%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.summary .details, .attendance .details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.summary .boxes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    width: 22%;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.box.expense-box {
+    background-color: #ffe0e0;
+}
+
+.extremeright {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.personaldetails .detal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.calender {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calender .month ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.calender .month ul li {
+    cursor: pointer;
+}
+
+.calender .weekdays {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.calender .days {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.calender .days li {
+    width: 13%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.chart-container {
+    background-color: rgb(236, 234, 234);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trainer {
+
+}
+
+.trainerdetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.persondetails table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.persondetails table th,
+.persondetails table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.persondetails table th {
+    background-color: #f8f9fa;
+}
+
+.persondetails table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.record-container {
+    margin-top: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #666;
+}
+
+#attendanceCount {
+    font-size: 48px;
+    margin: 20px 0;
+    color: #4CAF50;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}

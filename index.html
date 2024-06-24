@@ -13,6 +13,7 @@
 <body>
     <div class="maincontainer">
         <div class="left sidebar">
+           
             <div class="logo">
                 <h1>XTREME</h1>
             </div>
@@ -29,6 +30,7 @@
         </div>
 
         <div class="right">
+            
             <div class="upperpart">
                 <div class="message">
                     <div class="wlcm">Welcome Back <span><object data="hand.svg" width="20" height="20"></object></span></div>
@@ -36,11 +38,16 @@
                 </div>
                 <div><object data="notification.svg" width="20" height="20"></object></div>
             </div>
-
+            <button id="hamburgerBtn" class="hamburger-icon">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
             <div class="whole">
                 <div class="summary-attendance-container">
                     <div class="summary">
-                        <div class="details">
+                        <div id="dtl" class="details">
+                           
                             <h1>Summary</h1>
                             <h5>Today</h5>
                         </div>
@@ -75,7 +82,40 @@
                             <div class="record-container">
                                 <h2>Today's Attendance</h2>
                                 <div id="attendanceCount">0</div>
-                                <button id="checkInBtn">Check In</button>
+                                <form id="checkin-form">
+                                    <label for="member-id">Enter Member ID:</label>
+                                    <input type="text" id="member-id" name="member-id" required>                                    
+                                    <button type="submit" id="checkInBtn">Check In</button>
+
+                                </form>
+                            </div>
+                            <div id="activeMembersList">
+                                <h2>Active Members Checked In</h2>
+                                <table id="activeMembersTable" class="members-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Age</th>
+                                            <th>Membership</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Active check-in members will be added dynamically here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                        
+                            <div class="profile" id="profile-section">
+                                <h4>Profile</h4>
+                                <img id="profile-img" src="wp9274655-matching-4k-wallpapers.png" alt="Profile Picture">
+                                <p><strong>ID:</strong> <span id="profile-id"></span></p>
+                                <p><strong>Name:</strong> <span id="profile-name"></span></p>
+                                <p><strong>Age:</strong> <span id="profile-age"></span></p>
+                                <p><strong>Membership Type:</strong> <span id="profile-membership"></span></p>
+                                <button>Edit</button>
                             </div>
                         </div>
                     </div>
@@ -88,11 +128,40 @@
 
                 <div class="extremeright">
                     <div class="wholedetails">
-                        <div class="profile">
-                            <h4>Profile</h4>
-                            <img src="wp9274655-matching-4k-wallpapers.png" alt="Profile Picture">
-                            <button>Edit</button>
+                        <div class="active-members">
+                            <h1>Active Members</h1>
+                            <form id="addMemberForm">
+                                <label for="member-id-input">ID:</label>
+                                <input type="text" id="member-id-input" name="member-id" required>
+                                <label for="member-name">Name:</label>
+                                <input type="text" id="member-name" name="member-name" required>
+                                <label for="member-age">Age:</label>
+                                <input type="number" id="member-age" name="member-age" required>
+                                <label for="member-membership">Membership Type:</label>
+                                <select id="member-membership" name="member-membership" required>
+                                    <option value="Gold">Gold</option>
+                                    <option value="Silver">Silver</option>
+                                    <option value="Bronze">Bronze</option>
+                                </select>
+                                <button type="submit">Add Member</button>
+                            </form>
+                        
+                            <table id="memberTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Membership Type</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="memberList">
+                                    <!-- Member rows will be added dynamically here -->
+                                </tbody>
+                            </table>
                         </div>
+                        
                         <div class="personaldetails">
                             <div class="detal"><span>Age</span> <span>32</span></div>
                             <div class="detal"><span>Experience</span> <span>5 Years</span></div>

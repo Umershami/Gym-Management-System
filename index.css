@@ -308,6 +308,7 @@ body {
     margin-right: 5px;
 }
 
+<<<<<<< HEAD
 /* Button styles */
 button {
     background-color: #2ecc71; /* Green parrot color */
@@ -325,6 +326,8 @@ button:hover {
 }
 
 
+=======
+>>>>>>> 510797552c091a6e3703e87c0e2201b01d59c7cf
 @media (max-width: 1200px) {
     .maincontainer {
         flex-direction: column;

@@ -1,0 +1,438 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #f0f2f5;
+}
+
+
+.maincontainer {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background-color: #495057;
+}
+
+.settings {
+    margin-top: auto;
+}
+
+/* Hamburger icon styles */
+.hamburger-icon {
+    display: none; /* Initially hidden on desktop */
+}
+
+.hamburger-icon button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    margin: 4px auto;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Main content styles */
+.right {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    overflow-y: auto;
+}
+
+.upperpart {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+}
+
+.wlcm {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.whole {
+    display: flex;
+    gap: 20px;
+}
+
+.summary-attendance-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.summary,
+.attendance {
+    width: 50%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.summary .details,
+.attendance .details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.summary .boxes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    width: 22%;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.box.expense-box {
+    background-color: #ffe0e0;
+}
+
+.extremeright {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.personaldetails .detal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.calender {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calender .month ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.calender .month ul li {
+    cursor: pointer;
+}
+
+.calender .weekdays {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.calender .days {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.calender .days li {
+    width: 13%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.chart-container {
+    background-color: rgb(236, 234, 234);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trainer {}
+
+.trainerdetails {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.persondetails table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.persondetails table th,
+.persondetails table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.persondetails table th {
+    background-color: #f8f9fa;
+}
+
+.persondetails table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.record-container {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+}
+
+.profile {
+    display: none;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+}
+
+.profile img {
+    width: 100%;
+    height: auto;
+}
+
+.active-members {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#addMemberForm {
+    margin-bottom: 10px;
+}
+
+#memberTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#memberTable th,
+#memberTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#memberTable th {
+    background-color: #f2f2f2;
+}
+
+#memberTable td img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* Button styles */
+button {
+    background-color: #2ecc71; /* Green parrot color */
+    color: white;
+    border: none;
+    margin-top: 12px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #27ae60; /* Darker shade of green on hover */
+}
+
+
+@media (max-width: 1200px) {
+    .maincontainer {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -250px; /* Ensure sidebar starts off-screen */
+        top: 0;
+        bottom: 0;
+        z-index: 1000;
+        height: 100vh;
+        overflow-y: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .right {
+        margin-left: 0;
+    }
+
+
+
+    .summary,
+    .attendance {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .box {
+        width: 100%;
+    }
+
+    .summary-attendance-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+/* Hamburger icon styles */
+.hamburger-icon {
+    display: none; /* Initially hidden on larger screens */
+}
+
+.hamburger-icon button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20px;
+    height: 20px;
+}
+
+.bar {
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hamburger-icon {
+        display: flex; /* Show hamburger icon on smaller screens */
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -250px; /* Ensure sidebar starts off-screen */
+        top: 0;
+        bottom: 0;
+        z-index: 1000;
+        width: 250px;
+        background-color: #343a40;
+        color: white;
+        padding-top: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.show {
+        transform: translateX(0); /* Slide sidebar in */
+    }
+
+    .right {
+        margin-left: 0; /* Ensure main content starts after sidebar */
+    }
+
+    .sidebar ul {
+        padding-top: 60px; /* Ensure content is below hamburger icon */
+    }
+
+    .bar:nth-child(1) {
+        transform: translateY(5px) rotate(-45deg);
+    }
+
+    .bar:nth-child(2) {
+        opacity: 0; /* Hide middle bar */
+    }
+
+    .bar:nth-child(3) {
+        transform: translateY(-5px) rotate(45deg);
+    }
+}
+
+
+

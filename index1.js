@@ -4,13 +4,58 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkInBtn = document.getElementById('checkInBtn');
     const memberList = document.getElementById('memberList');
     const activeMembersList = document.getElementById('activeMembersList');
-    let checkedInMembers = new Set(); // Set to keep track of checked-in members
+    let checkedInMembers = new Set(); 
+    
+    const dashboardLink = document.getElementById('dashboardLink');
+    dashboardLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior (if it's a link)
+        location.reload(); // Reload the page
+    });
+    const camIcon = document.getElementById('cam');
+    camIcon.addEventListener('click', async () => {
+        try {
+            console.log("Trigered")
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            console.log('Camera access granted:', stream);
+            // Handle the stream (e.g., display video)
+        } catch (error) {
+            console.error('Error accessing camera:', error);
+            alert("Camera access denied");
+        }
+    });
+    const trainerLink = document.getElementById("trainerLink");
+    const trainerSection = document.getElementById('trainerSection');
+    trainerLink.addEventListener('click', () => {
+        trainerSection.scrollIntoView({ behavior: 'smooth' });
+        trainerSection.style.display = 'block'; // Ensure the trainer section is visible
+    });
+
+      // Add Trainer functionality (assuming this is additional functionality not directly related to adding members)
+      document.getElementById("addTrainerBtn").addEventListener("click", () => {
+        let name = prompt("Enter Trainer's Name:");
+        let email = prompt("Enter Trainer's Email:");
+        let id = prompt("Enter Trainer's ID:");
+        let status = prompt("Enter Trainer's Status (Active/On Vacation/Absent):");
+    
+        // Create a new row for the trainer table
+        let newRow = `<tr>
+                        <td>${name}</td>
+                        <td>${email}</td>
+                        <td>${id}</td>
+                        <td>${status}</td>
+                        <td><object data="dotted.svg" width="20" height="20"></object></td>
+                      </tr>`;
+    
+        // Append the new row to the table body
+        document.querySelector(".persondetails table tbody").insertAdjacentHTML('beforeend', newRow);
+    });
+    
 
     // Simulated initial members data
     const members = {
-        '1': { id: '1', name: 'John Doe', age: 28, membership: 'Gold', img: 'profile1.png' },
-        '2': { id: '2', name: 'Jane Smith', age: 32, membership: 'Silver', img: 'profile2.png' },
-        '3': { id: '3', name: 'Sam Johnson', age: 45, membership: 'Bronze', img: 'profile3.png' },
+        '1': { id: '1', name: 'John Doe', age: 28, membership: 'Gold', img: 'profile1.png', feesPaid: true },
+        '2': { id: '2', name: 'Jane Smith', age: 32, membership: 'Silver', img: 'profile2.png', feesPaid: true },
+        '3': { id: '3', name: 'Sam Johnson', age: 45, membership: 'Bronze', img: 'profile3.png', feesPaid: true },
     };
 
     // Populate initial members in the table
@@ -25,6 +70,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to add a member to the member list table or active members list
     function addMemberToTable(member) {
+        // Set feesPaid to false initially (assuming fees are unpaid until added)
+        member.feesPaid = false;
+
         const row = `<tr data-id="${member.id}">
                         <td>${member.id}</td>
                         <td>${member.name}</td>
@@ -33,10 +81,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         <td><button class="remove-member" data-id="${member.id}">Remove</button></td>
                     </tr>`;
 
+        // Add fee of 5000 when member is added
+        member.feesPaid = true;
+
         // Determine where to insert the row based on the context
         if (checkedInMembers.has(member.id)) {
             // Add to active members list
-            activeMembersList.querySelector('tbody').insertAdjacentHTML('beforeend', row);
+            activeMembersList.insertAdjacentHTML('beforeend', row);
         } else {
             // Add to overall members list
             memberList.insertAdjacentHTML('beforeend', row);
@@ -47,6 +98,11 @@ document.addEventListener("DOMContentLoaded", function () {
         removeButton.addEventListener('click', function () {
             removeMemberFromTable(member.id);
         });
+
+        // Check pending fees after 30 days
+        setTimeout(function () {
+            checkPendingFees(member.id);
+        }, 30 * 24 * 60 * 60 * 1000); // 30 days in milliseconds
     }
 
     // Function to remove a member from the member list table
@@ -67,6 +123,47 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     }
+
+    // Function to check pending fees after 30 days
+    function checkPendingFees(memberId) {
+        const member = members[memberId];
+        if (member && !member.feesPaid) {
+            // Show pending fees notification or handle as needed
+            console.log(`Member ${member.name} has pending fees.`);
+            // You can trigger UI notification or take appropriate action here
+        }
+    }
+
+    // Add Member form submission event
+    document.getElementById('addMemberForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get input values
+        let memberId = document.getElementById('member-id-input').value.trim();
+        let name = document.getElementById('member-name').value.trim();
+        let age = parseInt(document.getElementById('member-age').value.trim());
+        let membership = document.getElementById('member-membership').value.trim();
+        let fee = parseInt(document.getElementById('member-fee').value.trim()); // Assuming the fee is always 5000
+
+        // Generate new member object
+        const newMember = {
+            id: memberId,
+            name: name,
+            age: age,
+            membership: membership,
+            img: `profile${memberId}.png`, // Assuming you have profile images named profile1.png, profile2.png, etc.
+            feesPaid: true // Assuming the fee is paid at the time of adding
+        };
+
+        // Add new member to the members object
+        members[memberId] = newMember;
+
+        // Add member to the member list table
+        addMemberToTable(newMember);
+
+        // Reset the form after submission
+        document.getElementById('addMemberForm').reset();
+    });
 
     // Check-In button click event
     checkInBtn.addEventListener('click', function (event) {
@@ -126,6 +223,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Reset the form after submission
         document.getElementById('addMemberForm').reset();
+        let memberCountElement = document.getElementById('memberCount');
+        let currentCount = parseInt(memberCountElement.innerText);
+        memberCountElement.innerText = currentCount + 1;
     });
 
     // Chart.js setup for attendance chart
@@ -174,58 +274,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Add Trainer functionality (assuming this is additional functionality not directly related to adding members)
-    document.getElementById("addTrainerBtn").addEventListener("click", () => {
-        let name = prompt("Enter Trainer's Name:");
-        let email = prompt("Enter Trainer's Email:");
-        let id = prompt("Enter Trainer's ID:");
-        let status = prompt("Enter Trainer's Status (Active/On Vacation/Absent):");
-
-        // Create a new row for the trainer table (you might need to add this to your table dynamically)
-        let newRow = `<tr>
-                        <td>${name}</td>
-                        <td>${email}</td>
-                        <td>${id}</td>
-                        <td>${status}</td>
-                        <td><object data="dotted.svg" width="20" height="20"></object></td>
-                      </tr>`;
-
-        // Append the new row to the table body (you need to target your trainer table)
-        document.querySelector(".persondetails table tbody").insertAdjacentHTML('beforeend', newRow);
-
-        // Increment member count in summary section (assuming this is desired for trainers)
-        let memberCountElement = document.getElementById('memberCount');
-        let currentCount = parseInt(memberCountElement.innerText);
-        memberCountElement.innerText = currentCount + 1;
-    });
-
+  
+    
     // Navigation: Scroll to Trainer Section
-    const trainerLink = document.getElementById("trainerLink");
-    const trainerSection = document.getElementById('trainerSection');
-    trainerLink.addEventListener('click', () => {
-        trainerSection.scrollIntoView({ behavior: 'smooth' });
-        trainerSection.style.display = 'block'; // Ensure the trainer section is visible
-    });
+ 
 
     // Reload Dashboard
-    const dashboardLink = document.getElementById('dashboardLink');
-    dashboardLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        location.reload();
-    });
+    // const dashboardLink = document.getElementById('dashboardLink');
+    // dashboardLink.addEventListener('click', (event) => {
+    //     event.preventDefault();
+    //     location.reload();
+    // });
 
     // Access Camera
-    const camIcon = document.getElementById('cam');
-    camIcon.addEventListener('click', async () => {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            console.log('Camera access granted:', stream);
-            // Handle the stream (e.g., display video)
-        } catch (error) {
-            console.error('Error accessing camera:', error);
-            alert("Camera access denied");
-        }
-    });
+    
 });
 
 

@@ -215,7 +215,51 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.trainer {}
+.calendar {
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+.calendar-header {
+    background-color: #27ae60;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+.calendar-header h2 {
+    margin: 0;
+}
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+.calendar-nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color:#27ae60 ;
+}
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 10px;
+}
+.calendar-day {
+    padding: 10px;
+    text-align: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+.calendar-day.today {
+    background-color: #27ae60;
+    color: #fff;
+}
 
 .trainerdetails {
     display: flex;
@@ -308,7 +352,6 @@ body {
     margin-right: 5px;
 }
 
-<<<<<<< HEAD
 /* Button styles */
 button {
     background-color: #2ecc71; /* Green parrot color */
@@ -324,10 +367,6 @@ button {
 button:hover {
     background-color: #27ae60; /* Darker shade of green on hover */
 }
-
-
-=======
->>>>>>> 510797552c091a6e3703e87c0e2201b01d59c7cf
 @media (max-width: 1200px) {
     .maincontainer {
         flex-direction: column;

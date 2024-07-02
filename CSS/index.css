@@ -530,5 +530,15 @@ button:hover {
     background-color: #ddd;
     color: black;
 }
+.settings{
+    position: relative;
+}
+.prandset{
+    position: absolute;
+
+    bottom: 142px;
+
+    
+}
 
 

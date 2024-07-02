@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Append the new row to the table body
         document.querySelector(".persondetails table tbody").insertAdjacentHTML('beforeend', newRow);
     });
+   
     
 
     // Simulated initial members data
@@ -164,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Reset the form after submission
         document.getElementById('addMemberForm').reset();
     });
+    
 
     // Check-In button click event
     checkInBtn.addEventListener('click', function (event) {
@@ -272,7 +274,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 tension: 0.1
             }]
         }
+        
     });
+
+
 
   
     

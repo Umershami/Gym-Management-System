@@ -15,10 +15,10 @@ body {
 
 /* Sidebar styles */
 .sidebar {
-    width: 250px;
+    width: 120px;
     background-color: #343a40;
     color: white;
-    padding-top: 20px;
+    padding: 10px;
 }
 
 .logo {
@@ -50,16 +50,6 @@ body {
 }
 
 /* Hamburger icon styles */
-.hamburger-icon {
-    display: none; /* Initially hidden on desktop */
-}
-
-.hamburger-icon button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-}
 
 .bar {
     display: block;
@@ -476,5 +466,21 @@ button:hover {
     }
 }
 
+#messageBox {
+    display: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    background: #f9f9f9;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+#messageBox h3 {
+    margin-top: 0;
+}
+.message {
+    margin-bottom: 10px;
+}
 
 

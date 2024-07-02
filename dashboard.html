@@ -15,6 +15,7 @@
             window.location.href = 'login.html'; // Redirect to login page
         }
     </script>
+     
     
 </head>
 
@@ -35,7 +36,11 @@
                 <div class="navbar">
                     <ul>
                         <li class="settings" id="settingsBtn"><i class="fas fa-cog"></i> Settings</li>
-                        <li id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</li>
+                        <div class="prandset" id="ps">
+                            <div class="privacy" id="pri">Privacy & Security</div>
+                            <div class="appearance" id="app">Appearance</div>
+                            <li id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</li>
+                        </div>
                     </ul>
                 </div>
             </ul>
@@ -267,13 +272,15 @@
         </div>
     
 </div>
+
     <script src="Java Script/index1.js"></script>
     <script src="Java Script/calender.js"></script>
-    <script src="Java Script/setting.js"></script>
+   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="Java Script/index.js"></script>
-    <script src="Java Script/message.js"
-    "></script>
+    <script src="Java Script/message.js"></script>
+    <script src="Java Script/setting.js"></script>
+   
     
     <script>
         // Check if user is logged in

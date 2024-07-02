@@ -53,6 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
     // Simulated initial members data
+    let currentRevenue = 1500; // Initial revenue in dollars
+
     const members = {
         '1': { id: '1', name: 'John Doe', age: 28, membership: 'Gold', img: 'profile1.png', feesPaid: true },
         '2': { id: '2', name: 'Jane Smith', age: 32, membership: 'Silver', img: 'profile2.png', feesPaid: true },
@@ -71,9 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to add a member to the member list table or active members list
     function addMemberToTable(member) {
-        // Set feesPaid to false initially (assuming fees are unpaid until added)
-        member.feesPaid = false;
-
+        // Create dynamic content for the member table row
         const row = `<tr data-id="${member.id}">
                         <td>${member.id}</td>
                         <td>${member.name}</td>
@@ -83,7 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     </tr>`;
 
         // Add fee of 5000 when member is added
-        member.feesPaid = true;
+        if (!member.feesPaid) {
+            currentRevenue += 5000;
+            member.feesPaid = true;
+
+            // Update the DOM with new revenue in the specified section
+            document.getElementById('revenueAmount').textContent = `$${(currentRevenue / 1000).toFixed(1)}K`;
+        }
 
         // Determine where to insert the row based on the context
         if (checkedInMembers.has(member.id)) {
@@ -106,25 +112,60 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 30 * 24 * 60 * 60 * 1000); // 30 days in milliseconds
     }
 
-    // Function to remove a member from the member list table
+    // Add event listener to the form to add a new member
+    document.getElementById('addMemberForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Get form data
+        const memberId = document.getElementById('member-id-input').value;
+        const memberName = document.getElementById('member-name').value;
+        const memberAge = document.getElementById('member-age').value;
+        const memberMembership = document.getElementById('member-membership').value;
+        const memberFee = parseFloat(document.getElementById('member-fee').value);
+
+        // Create a new member object
+        const newMember = {
+            id: memberId,
+            name: memberName,
+            age: memberAge,
+            membership: memberMembership,
+            revenue: `$${memberFee}`,
+            feesPaid: false
+        };
+
+        // Add the new member to the members object
+        members[memberId] = newMember;
+
+        // Add the new member to the table
+        addMemberToTable(newMember);
+
+        // Clear the form
+        document.getElementById('addMemberForm').reset();
+    });
+
+    // Function to remove a member from the member table
     function removeMemberFromTable(memberId) {
-        const rowToRemove = document.querySelector(`tr[data-id="${memberId}"]`);
-        if (rowToRemove) {
-            rowToRemove.remove();
+        // Find the member in the members object
+        const member = members[memberId];
 
-            // Remove from checked-in members set if applicable
-            if (checkedInMembers.has(memberId)) {
-                checkedInMembers.delete(memberId);
-
-                // Remove from active members list
-                const activeRowToRemove = document.querySelector(`#activeMembersList tr[data-id="${memberId}"]`);
-                if (activeRowToRemove) {
-                    activeRowToRemove.remove();
-                }
-            }
+        // Remove the member from the table
+        const memberRow = document.querySelector(`tr[data-id="${member.id}"]`);
+        if (memberRow) {
+            memberRow.remove();
         }
-    }
 
+        // Deduct the member fee from the revenue
+        if (member.feesPaid) {
+            currentRevenue -= 5000;
+            member.feesPaid = false;
+
+            // Update the DOM with new revenue in the specified section
+            document.getElementById('revenueAmount').textContent = `$${(currentRevenue / 1000).toFixed(1)}K`;
+        }
+
+        // Remove the member from the members object
+        delete members[memberId];
+    }
     // Function to check pending fees after 30 days
     function checkPendingFees(memberId) {
         const member = members[memberId];
